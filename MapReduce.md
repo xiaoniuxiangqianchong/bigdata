@@ -1,4 +1,5 @@
-# MapReduce
+<font color = #00ff00 size=7> MapReduce </font>
+## MapReduce
 ---
 ---
 适合PB级以上数据的离线处理
@@ -14,7 +15,7 @@ Reduce阶段由一定数量的Rdeuce Task组成:
 * 数据输出格式: OutputerFormat
 ***
 ***
-# MapReduce 计算流程原理
+## MapReduce 计算流程原理
 ### Map阶段:
 * 将数据拆分成splits,每个文件是一个split,并将文件按行分隔成键值对<key,value>,然后对用户定
 义的map方法进行处理,生成新的键值对,Mapper会将他们按照key值进行排序,并执行Combine过程,将
@@ -25,7 +26,7 @@ key值相同的value值累加,得到Mapper的最终输出结果.
 ##### 输入数据 -> 分割结果 -> map方法输出 -> 排序 -> combine输出 -> 排序结果 -> Reduce输出
 ***
 ***
-# MapReduce环境配置(注意:Windows系统下目录分隔符用\)
+## MapReduce环境配置(注意:Windows系统下目录分隔符用\)
 + 用hadooponwindows-master中的bin和etc文件夹把hadoop-2.7.3中的相同文件夹替换掉.
 + 把hadoop-2.7.3中的hadoop.dll文件和winutils.exe文件copy到电脑Windows目录下System32文件中
 + 配环境变量:配置java和hadoop的环境变量
