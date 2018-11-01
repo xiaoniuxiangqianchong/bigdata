@@ -1,6 +1,7 @@
-## MapReduce
+# MapReduce
 ---
 ---
+## 概述
 适合PB级以上数据的离线处理
 mapReduce由两个阶段组成:Map阶段和Reduce阶段
 Map阶段由一定数量的Map Task组成:
