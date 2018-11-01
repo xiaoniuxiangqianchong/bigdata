@@ -1,4 +1,4 @@
-<font color = #00ff00 size=7> MapReduce </font>
+<center> MapReduce </center>
 ## MapReduce
 ---
 ---
