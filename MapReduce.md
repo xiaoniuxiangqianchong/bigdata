@@ -1,4 +1,3 @@
-<center> MapReduce </center>
 ## MapReduce
 ---
 ---
