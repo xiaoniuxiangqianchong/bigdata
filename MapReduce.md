@@ -38,7 +38,7 @@ hadoop namenode -format命令格式化namenode.然后输入start-all.cmd命令开启namenode,
 ***
 ***
 ## MapReduce 计算框架
-+ 代码
+#### 代码:
 public class WordCountTest {
 
 	public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable> {
@@ -55,7 +55,7 @@ public class WordCountTest {
 		}
 	}
 
-//		Reduce类是算法核心,可根据需要编写想要的算法
+//		Reduce类是算法核心,可根据需要编写想要的算法  
 	public static class IntSumReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
 		private IntWritable result = new IntWritable();
 
@@ -83,13 +83,13 @@ public class WordCountTest {
 		job.setMapperClass(CountMapper.class);
 		job.setCombinerClass(IntSumReducer.class);
 		job.setReducerClass(IntSumReducer.class);
-//		key值和value值得输出类型,要和最后Reduce阶段的输出类型相同
+//		key值和value值得输出类型,要和最后Reduce阶段的输出类型相同  
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
 		for (int i = 0; i < otherArgs.length - 1; i++) {
 			FileInputFormat.addInputPath(job, new Path(otherArgs[i]));
 		}
-		FileOutputFormat.setOutputPath(job, new Path(otherArgs[(otherArgs.length - 1)]));
+		FileOutputFormat.setOutputPath(job, new Path(otherArgs[(otherArgs.length - 1)]));  
 
 		System.exit(job.waitForCompletion(true) ? 0 : 1);
 	}
