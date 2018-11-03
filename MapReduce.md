@@ -55,7 +55,6 @@ public class WordCountTest {
 		}
 	}
 
-//		Reduce类是算法核心,可根据需要编写想要的算法  
 	public static class IntSumReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
 		private IntWritable result = new IntWritable();
 
@@ -82,10 +81,10 @@ public class WordCountTest {
 		job.setJarByClass(WordCount.class);
 		job.setMapperClass(CountMapper.class);
 		job.setCombinerClass(IntSumReducer.class);
-		job.setReducerClass(IntSumReducer.class);
-//		key值和value值得输出类型,要和最后Reduce阶段的输出类型相同  
+		job.setReducerClass(IntSumReducer.class); 
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
+		
 		for (int i = 0; i < otherArgs.length - 1; i++) {
 			FileInputFormat.addInputPath(job, new Path(otherArgs[i]));
 		}
@@ -94,6 +93,7 @@ public class WordCountTest {
 		System.exit(job.waitForCompletion(true) ? 0 : 1);
 	}
 }
++++
 + 使用MapReduce计算框架时,我们只需要根据自己的需求修改Map类和Reduce类即可,其他过程MapReduce
 框架会自动帮我们完成.
 + 要使用自定义的类型作为输出:
