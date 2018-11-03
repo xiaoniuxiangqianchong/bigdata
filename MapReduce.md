@@ -39,6 +39,7 @@ hadoop namenode -format命令格式化namenode.然后输入start-all.cmd命令开启namenode,
 ***
 ## MapReduce 计算框架
 #### 代码:
+
 public class WordCountTest {
 
 	public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable> {
@@ -92,7 +93,8 @@ public class WordCountTest {
 
 		System.exit(job.waitForCompletion(true) ? 0 : 1);
 	}
-}
+}  
+
 +++
 + 使用MapReduce计算框架时,我们只需要根据自己的需求修改Map类和Reduce类即可,其他过程MapReduce
 框架会自动帮我们完成.
