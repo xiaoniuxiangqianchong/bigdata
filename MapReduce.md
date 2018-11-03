@@ -95,7 +95,7 @@ public class WordCountTest {
 	}
 }  
 
-+++
+***
 + 使用MapReduce计算框架时,我们只需要根据自己的需求修改Map类和Reduce类即可,其他过程MapReduce
 框架会自动帮我们完成.
 + 要使用自定义的类型作为输出:
