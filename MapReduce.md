@@ -96,6 +96,8 @@ public class WordCountTest {
 }  
 
 ***
+
+#### ×¢ÒâÊÂÏî:
 + Ê¹ÓÃMapReduce¼ÆËã¿ò¼ÜÊ±,ÎÒÃÇÖ»ĞèÒª¸ù¾İ×Ô¼ºµÄĞèÇóĞŞ¸ÄMapÀàºÍReduceÀà¼´¿É,ÆäËû¹ı³ÌMapReduce
 ¿ò¼Ü»á×Ô¶¯°ïÎÒÃÇÍê³É.
 + ÒªÊ¹ÓÃ×Ô¶¨ÒåµÄÀàĞÍ×÷ÎªÊä³ö:
@@ -112,3 +114,38 @@ reduce½×¶ÎÊÇ»ñÈ¡²»µ½Êı¾İµÄ,¶øÕâÒ»¶¨Òª×¢ÒâµÄÒ»µã¾ÍÊÇreadFields()·½·¨ÖĞµ÷ÓÃread·½·
 	 job.setOutputValueClass(StreamBean.class);
 5. µ±ÕâĞ©¶¼´¦ÀíºÃºó,reduceµÄ½á¹û¾Í¿ÉÒÔÊä³öµ½ÎÒÃÇÖ¸¶¨µÄÎ»ÖÃÉÏÁË,µ«ÊÇÒª×¢Òâ×Ô¶¨ÒåbeanµÄtoString()
 ·½·¨µÄÖØĞ´,·ñÔòÎŞ·¨Êä³öÎÒÃÇÏëÒªµÄ½á¹û
+***
+
+#### ×Ô¶¨ÒåInputFormat:
+##### ¾ö¶¨ÒÔÊ²Ã´ĞÎÊ½ÊäÈë,ÕâÊ±ºòmapĞÎ²ÎÒª×¢Òâ¶ÔÓ¦
+1. dirver job.set
+2. ´´½¨×Ô¶¨ÒåµÄinputFormat extends FileInputFormat
+3. ÊµÏÖ¶ÔÓ¦·½·¨ recordreader ³ıÁËÒª´´½¨¶ÔÓ¦µÄrecordreader »¹ĞèÒªÍ¨¹ı
+  initialize(spilt, context)À´½øĞĞ¸³Öµ
+4. ´´½¨¶ÔÓ¦µÄrecordreader extends recordreader
+5. ÊµÏÖ¶ÔÓ¦µÄ·½·¨
+   * initialaize(InputSplit split, TaskAttemptContext context)ÒòÎªÎÒÃÇrecordreaderÊ±ÕæÕıÒª¶ÁÈ¡
+Êı¾İµÄÈË,ËùÒÔÒªÍ¨¹ısplitÀ´µÃµ½Òª¶ÁÈ¡ÎÄ¼şµÄĞÅÏ¢,´Ócontext.getConfiguration() ·½·¨ÖĞ»ñÈ¡ÎÒÃÇÅäÖÃ
+ÎÄ¼şÏµÍ³µÄÎ»ÖÃ
+   * nextKeyValue() °´¸ñÊ½¶ÁÈ¡ÎÄ¼ş,²¢¸ù¾İ¶ÁÈ¡µÄ½á¹û·µ»Ø,·µ»ØÖµ½«¾ö¶¨mapÊÇ·ñÖ´ĞĞ.
+   * getCurrentKey() map·½·¨´«ÈëµÄkeyÖµÊÇ´ÓÕâ¸ö·½·¨ÖĞ»ñÈ¡
+   * getCurrentValue() map·½·¨´«ÈëµÄvalueÖµÊÇ´ÓÕâ¸ö·½·¨ÖĞ»ñÈ¡
+   * getProgress() »ñÈ¡½ø¶ÈµÄ·½·¨
+
+***
+
+#### ×Ô¶¨ÒåOutputFormat:
+##### ¾ö¶¨½á¹ûÊä³öµ½ÄÄ,ÒÔÊ²Ã´ĞÎÊ½Êä³ö
+1. driver job.set
+2. ´´½¨×Ô¶¨ÒåµÄOutputFormat extends FIleOutputFOrmat
+3. ÊµÏÖ¶ÔÓ¦·½·¨	RecordWriter
+   * ĞèÒªÍ¨¹ıthis.getOutputPath(job);ÄÃµ½ÎÒÃÇÏëÒªÊä³öµÄÎ»ÖÃ
+   * ¸ù¾İÊä³öÄ¿Â¼´´½¨¶ÔÓ¦µÄÊä³öÁ÷,´«¸ørecordWriter
+4. ´´½¨¶ÔÓ¦µÄRecordWriter extends RecordWriter
+5. ÊµÏÖÈı¸ö·½·¨
+   * ´ø²Î¹¹ÔìÓÃÀ´½ÓÊÕÊä³öÁ÷,ÖªµÀÒªÔÚÄÄĞ©Î»ÖÃĞ´
+   * writer·½·¨ÄÜ¹»½ÓÊÕµ½×îÖÕÒªĞ´ÈëµÄÄÚÈİ,ÔÚÕâ½øĞĞÂß¼­ÅĞ¶Ï¾ö¶¨ÍùÄÄ¸öÊä³öÁ÷½øĞĞĞ´Èë.
+   * close·½·¨ÓÃÀ´¹Ø±ÕÁ÷,Ò²ÊÇÎÒÃÇjobµÄ½áÊø
+
+
+
